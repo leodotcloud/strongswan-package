@@ -4,11 +4,12 @@ FROM ubuntu:16.04
 ARG DAPPER_HOST_ARCH
 ENV HOST_ARCH=${DAPPER_HOST_ARCH} ARCH=${DAPPER_HOST_ARCH}
 
+RUN echo "deb-src http://archive.ubuntu.com/ubuntu/ xenial main restricted" >> /etc/apt/sources.list
 RUN apt-get update && apt-get install -y build-essential wget curl iproute2 && \
     apt-get build-dep -y strongswan
 
-ARG VERSION=5.5.1
-ENV VERSION=${VERSION} PACKAGE="-rancher-1-1"
+ARG VERSION=5.6.0
+ENV VERSION=${VERSION} PACKAGE="-leo-1-0"
 
 RUN wget https://download.strongswan.org/strongswan-${VERSION}.tar.bz2 && \
     tar -xf strongswan-${VERSION}.tar.bz2 -C /
